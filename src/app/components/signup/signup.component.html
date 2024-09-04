@@ -1,0 +1,38 @@
+<form class="container" #registerForm="ngForm">
+  <!-- #registerForm this is templete variable injected -->
+  <h4>Signup</h4>
+  <input
+    type="email"
+    placeholder="Enter your email"
+    required
+    pattern="^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$"
+    ngModel
+    name="email"
+    #email="ngModel"
+  />
+  <h5 class="red-text" [hidden]="email.valid || email.untouched">
+    Email format not correct
+  </h5>
+  <input
+    type="password"
+    placeholder="Enter your password"
+    required
+    ngModel
+    minlength="5"
+    #pass="ngModel"
+    name="pass"
+  />
+
+  <h5 class="red-text" [hidden]="pass.valid || pass.untouched">
+    Password is required and must have min 5 characters
+  </h5>
+  <button
+    class="btn-green"
+    (click)="register(registerForm)"
+    [disabled]="registerForm.invalid"
+  >
+    Register
+  </button>
+
+  <button class="btn-red" (click)="reset(registerForm)">Reset</button>
+</form>
